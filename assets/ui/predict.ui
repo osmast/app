@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Predict</class>
+ <widget class="QWidget" name="Predict">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>360</width>
+    <height>760</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Predict</string>
+  </property>
+  <layout class="QVBoxLayout" name="controls_layout">
+   <item>
+    <widget class="QLabel" name="intro_label">
+     <property name="text">
+      <string>Run the trained models on the live feed or on a video file: RTMDet finds each animal, RTMPose places head and tail, and the measured length is written above the animal. Nothing here is stored: a prediction is not ground truth.</string>
+     </property>
+     <property name="wordWrap">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="detector_group">
+     <property name="title">
+      <string>1.  Detector</string>
+     </property>
+     <layout class="QVBoxLayout" name="detector_layout">
+      <item>
+       <widget class="QLabel" name="detector_label">
+        <property name="text">
+         <string>No detector loaded.</string>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <layout class="QFormLayout" name="threshold_form">
+        <item row="0" column="0">
+         <widget class="QLabel" name="label_score">
+          <property name="text">
+           <string>Score &gt;=</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QDoubleSpinBox" name="spin_score">
+          <property name="decimals">
+           <number>2</number>
+          </property>
+          <property name="singleStep">
+           <double>0.05</double>
+          </property>
+          <property name="maximum">
+           <double>0.99</double>
+          </property>
+          <property name="value">
+           <double>0.35</double>
+          </property>
+          <property name="toolTip">
+           <string>A detection is shown when its score reaches this. Lower shows the marginal guesses - useful when tuning, misleading when reading.</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="label_iou">
+          <property name="text">
+           <string>NMS IoU</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QDoubleSpinBox" name="spin_iou">
+          <property name="decimals">
+           <number>2</number>
+          </property>
+          <property name="singleStep">
+           <double>0.05</double>
+          </property>
+          <property name="maximum">
+           <double>0.99</double>
+          </property>
+          <property name="value">
+           <double>0.60</double>
+          </property>
+          <property name="toolTip">
+           <string>Overlapping boxes above this IoU are merged. Raise it if two animals are being merged into one box.</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="scale_group">
+     <property name="title">
+      <string>2.  Scale</string>
+     </property>
+     <layout class="QVBoxLayout" name="scale_layout">
+      <item>
+       <widget class="QLabel" name="scale_label">
+        <property name="text">
+         <string>No scale yet - lengths are shown in pixels. Calibrate in Optics for micrometres.</string>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QComboBox" name="combo_scale">
+        <property name="toolTip">
+         <string>Which calibration the lengths are converted with. The active calibration is the app's own; a manual value is for a quick check when none is trusted.</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <layout class="QFormLayout" name="scale_form">
+        <item row="0" column="0">
+         <widget class="QLabel" name="label_um_per_px">
+          <property name="text">
+           <string>um per px</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QDoubleSpinBox" name="spin_um_per_px">
+          <property name="decimals">
+           <number>4</number>
+          </property>
+          <property name="singleStep">
+           <double>0.1</double>
+          </property>
+          <property name="maximum">
+           <double>100000.0</double>
+          </property>
+          <property name="value">
+           <double>0.0</double>
+          </property>
+          <property name="toolTip">
+           <string>Micrometres one pixel spans, used only when the combo says Manual. It is the inverse of the profile's px_per_um: 0.0134 px/um is 74.8 um/px.</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <widget class="QPushButton" name="btn_refresh_scale">
+        <property name="text">
+         <string>Re-read calibrations</string>
+        </property>
+        <property name="toolTip">
+         <string>Read the calibration list again - after verifying one in Optics, without restarting the app.</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="average_group">
+     <property name="title">
+      <string>3.  Averages (tracked animals)</string>
+     </property>
+     <layout class="QVBoxLayout" name="average_layout">
+      <item>
+       <widget class="QLabel" name="average_label">
+        <property name="text">
+         <string>No animal tracked yet.</string>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QComboBox" name="combo_labels">
+        <property name="toolTip">
+         <string>What is written above each animal. Per frame shows this frame's prediction; Average follows each animal across frames and shows its mean and the spread of that mean; Hidden draws no numbers at all.</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="btn_reset_tracks">
+        <property name="text">
+         <string>Reset tracks &amp; averages</string>
+        </property>
+        <property name="toolTip">
+         <string>Forget every identity and start the averages again - after changing the container, the plate or the source.</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="source_group">
+     <property name="title">
+      <string>4.  Source</string>
+     </property>
+     <layout class="QVBoxLayout" name="source_layout">
+      <item>
+       <widget class="QLabel" name="source_label">
+        <property name="text">
+         <string>No source yet.</string>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="playback_row">
+        <item>
+         <widget class="QPushButton" name="btn_play">
+          <property name="text">
+           <string>Pause</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="btn_stop">
+          <property name="text">
+           <string>Stop</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <widget class="QSlider" name="slider_position">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="toolTip">
+         <string>Position in the video file. Only a video has a position.</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="result_group">
+     <property name="title">
+      <string>5.  What it found - the model's answers</string>
+     </property>
+     <layout class="QVBoxLayout" name="result_layout">
+      <item>
+       <widget class="QLabel" name="summary_label">
+        <property name="text">
+         <string>No frame processed yet.</string>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QTreeWidget" name="list_detections">
+        <property name="rootIsDecorated">
+         <bool>true</bool>
+        </property>
+        <column>
+         <property name="text">
+          <string>Animal</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Measurement</string>
+         </property>
+        </column>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="status_label">
+        <property name="text">
+         <string>Ready.</string>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

@@ -1,0 +1,25 @@
+{
+  "name": "ocular_checkerboard",
+  "kind": "rendered",
+  "pattern": "checkerboard",
+  "height": 720,
+  "width": 1280,
+  "centre_px": [
+    640.0,
+    360.0
+  ],
+  "field_stop_radius_px": 330.0,
+  "pitch_px": 27.0,
+  "pitch_um": 1000.0,
+  "px_per_um": 0.027,
+  "dot_ratio": 0.42,
+  "distortion_k1": 1e-07,
+  "predicted_edge_pitch_px": 26.70597,
+  "predicted_drift_pct": 1.0889999999999975,
+  "tilt_deg": 8.0,
+  "vignette": 0.45,
+  "blur_px": 1.0,
+  "noise_sigma": 0.015,
+  "note": "rendered by scripts/render_point_target.py - the ground truth of the tests",
+  "created": "2026-10-21T21:20:13+00:00"
+}

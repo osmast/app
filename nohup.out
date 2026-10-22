@@ -1,0 +1,33 @@
+sweep: equalised amplitude, pin every 27 px, grouping tolerance accepted_ratio
+  s=0.1 r=9 gr=0.3 miss=6 acc=0.15: lines 30/37 centre (571.2,88.9) residual 246.495 px (worst 3579.321) subpixel=False warn=1
+  s=0.1 r=9 gr=0.3 miss=6 acc=0.25: lines 28/34 centre (302.1,-832.5) residual 117.260 px (worst 1075.880) subpixel=False warn=1
+  s=0.1 r=9 gr=0.3 miss=6 acc=0.35: lines 25/33 centre (680.5,199.7) residual   4.137 px (worst  17.505) subpixel=False warn=1
+  s=0.1 r=9 gr=0.3 miss=6 acc=0.5: lines 23/30 centre (622.4,221.7) residual   9.658 px (worst  17.464) subpixel=False warn=1
+  s=0.1 r=9 gr=0.3 miss=6 acc=0.65: lines 18/26 centre (620.5,232.9) residual   5.247 px (worst  18.436) subpixel=False warn=1
+  s=0.1 r=9 gr=0.5 miss=10 acc=0.15: lines 31/33 centre (1795613.0,-558564.0) residual   3.124 px (worst 148.770) subpixel=False warn=1
+  s=0.1 r=9 gr=0.5 miss=10 acc=0.25: lines 29/33 centre (217124.9,-66997.1) residual   3.505 px (worst 247.252) subpixel=False warn=1
+  s=0.1 r=9 gr=0.5 miss=10 acc=0.35: lines 26/32 centre (685.7,269.3) residual   5.314 px (worst  51.802) subpixel=False warn=1
+  s=0.1 r=9 gr=0.5 miss=10 acc=0.5: lines 23/31 centre (662.7,248.1) residual   5.448 px (worst  56.311) subpixel=False warn=1
+  s=0.1 r=9 gr=0.5 miss=10 acc=0.65: lines 16/28 centre (659.8,245.2) residual   4.081 px (worst  20.030) subpixel=False warn=1
+  s=0.05 r=9 gr=0.3 miss=6 acc=0.15: lines 34/40 centre (632.6,156.8) residual   6.202 px (worst  43.041) subpixel=False warn=1
+  s=0.05 r=9 gr=0.3 miss=6 acc=0.25: lines 31/35 centre (628.0,-130.3) residual 370.035 px (worst 3673.068) subpixel=False warn=1
+  s=0.05 r=9 gr=0.3 miss=6 acc=0.35: lines 30/34 centre (657.2,260.7) residual   9.398 px (worst  46.519) subpixel=False warn=1
+  s=0.05 r=9 gr=0.3 miss=6 acc=0.5: lines 23/31 centre (655.2,258.8) residual  15.975 px (worst  47.463) subpixel=False warn=1
+  s=0.05 r=9 gr=0.3 miss=6 acc=0.65: lines 16/29 centre (651.8,219.3) residual  12.323 px (worst  47.315) subpixel=False warn=1
+  s=0.05 r=9 gr=0.5 miss=10 acc=0.15: lines 29/35 centre (676.2,337.6) residual   7.924 px (worst  47.659) subpixel=False warn=1
+  s=0.05 r=9 gr=0.5 miss=10 acc=0.25: lines 28/35 centre (676.3,341.6) residual   7.073 px (worst  47.801) subpixel=False warn=1
+  s=0.05 r=9 gr=0.5 miss=10 acc=0.35: lines 27/34 centre (67905.4,-4614.3) residual 113.345 px (worst 10344.582) subpixel=False warn=1
+  s=0.05 r=9 gr=0.5 miss=10 acc=0.5: lines 25/31 centre (-401302.7,184800.9) residual  19.597 px (worst 332.181) subpixel=False warn=1
+  s=0.05 r=9 gr=0.5 miss=10 acc=0.65: lines 17/27 centre (651.2,299.3) residual   4.906 px (worst  21.354) subpixel=False warn=1
+  s=0.1 r=7 gr=0.3 miss=6 acc=0.15: lines 32/36 centre (564.9,265.0) residual   5.820 px (worst  53.470) subpixel=False warn=1
+  s=0.1 r=7 gr=0.3 miss=6 acc=0.25: lines 29/34 centre (653.6,243.0) residual   4.113 px (worst  19.775) subpixel=False warn=1
+  s=0.1 r=7 gr=0.3 miss=6 acc=0.35: lines 27/33 centre (655.5,236.7) residual   3.695 px (worst  18.397) subpixel=False warn=1
+  s=0.1 r=7 gr=0.3 miss=6 acc=0.5: lines 22/28 centre (629.0,225.4) residual   4.077 px (worst  17.314) subpixel=False warn=1
+  s=0.1 r=7 gr=0.3 miss=6 acc=0.65: lines 17/21 centre (669.3,251.2) residual  10.223 px (worst  23.509) subpixel=False warn=1
+  s=0.1 r=7 gr=0.5 miss=10 acc=0.15: lines 31/33 centre (-109723267.4,-5904312.4) residual   0.057 px (worst   2.411) subpixel=True warn=1
+  s=0.1 r=7 gr=0.5 miss=10 acc=0.25: lines 29/33 centre (55273535.3,8473071.6) residual  13.095 px (worst 289.487) subpixel=False warn=1
+  s=0.1 r=7 gr=0.5 miss=10 acc=0.35: lines 28/32 centre (-418.8,670.5) residual 2815.750 px (worst 52214.978) subpixel=False warn=1
+  s=0.1 r=7 gr=0.5 miss=10 acc=0.5: lines 21/30 centre (1670.5,-101.0) residual  48.388 px (worst 846.257) subpixel=False warn=1
+  s=0.1 r=7 gr=0.5 miss=10 acc=0.65: lines 16/26 centre (666.0,275.7) residual   9.346 px (worst  33.236) subpixel=False warn=1
+
+best: residual 0.057 px, subpixel=True

@@ -1,0 +1,48 @@
+{
+  "exported_at": "2026-10-17T17:10:49",
+  "dataset": {
+    "dataset_id": "DATA_20261015_234244_220e2b",
+    "name": "bb",
+    "schema_key": "boxes",
+    "organism": "Daphnia magna",
+    "note": null,
+    "is_current": 1,
+    "created_at": "2026-10-15 21:42:44"
+  },
+  "schema": {
+    "key": "boxes",
+    "label": "Bounding boxes only",
+    "keypoints": [],
+    "boxes": true
+  },
+  "stats": {
+    "labels": 0,
+    "boxes": 526,
+    "images": 223,
+    "by_trait": {}
+  },
+  "split_counts": {
+    "train": 0,
+    "val": 0,
+    "test": 0
+  },
+  "splits": {
+    "train": {
+      "file": "splits/train.txt",
+      "images": 160
+    },
+    "val": {
+      "file": "splits/val.txt",
+      "images": 33
+    },
+    "test": {
+      "file": "splits/test.txt",
+      "images": 30
+    }
+  },
+  "images_copied": 1,
+  "images_missing": 0,
+  "labels_csv": "labels.csv",
+  "boxes_csv": "boxes.csv",
+  "labels_json": "labels.json"
+}

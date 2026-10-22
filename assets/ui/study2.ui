@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Study2</class>
+ <widget class="QWidget" name="Study2">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>420</width>
+    <height>820</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Study 2</string>
+  </property>
+  <layout class="QVBoxLayout" name="controls_layout">
+   <item>
+    <widget class="QLabel" name="intro_label">
+     <property name="text">
+      <string>The plate page: pick a 6-, 24- or 96-well plate, put it under the camera and capture each well - a short burst, or a recording you start and stop. The wells light up as they are imaged, so the empty ones are obvious. One well = one image (the sharpest frame of its capture). Measuring a well's individuals is the next step, not this one.</string>
+     </property>
+     <property name="wordWrap">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="study_group">
+     <property name="title">
+      <string>1.  Study</string>
+     </property>
+     <layout class="QVBoxLayout" name="study_layout">
+      <item>
+       <widget class="QLabel" name="study_label">
+        <property name="text">
+         <string>No study open.</string>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QComboBox" name="combo_study">
+        <property name="toolTip">
+         <string>The project the captures of this page belong to. A plate belongs to a study, and a study owns the folder its images are written into.</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="study_row">
+        <item>
+         <widget class="QPushButton" name="btn_use_study">
+          <property name="text">
+           <string>Use this study</string>
+          </property>
+          <property name="toolTip">
+           <string>Make the selected study the one the whole application is working on - the study the plate below belongs to.</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="btn_new_study">
+          <property name="text">
+           <string>New study...</string>
+          </property>
+          <property name="toolTip">
+           <string>Create a study for plates: name it, and the images of this run get their own folder under recordings/.</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="plate_group">
+     <property name="title">
+      <string>2.  Plate</string>
+     </property>
+     <layout class="QVBoxLayout" name="plate_layout">
+      <item>
+       <widget class="QLabel" name="plate_label">
+        <property name="text">
+         <string>No plate in this study yet.</string>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QComboBox" name="combo_plate">
+        <property name="toolTip">
+         <string>Which plate of the study is on the bench. One study may run several plates.</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <layout class="QFormLayout" name="new_plate_form">
+        <item row="0" column="0">
+         <widget class="QLabel" name="label_format">
+          <property name="text">
+           <string>Format</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QComboBox" name="combo_format">
+          <property name="toolTip">
+           <string>How many wells the plate has: 6, 24 or 96. The format decides the wells the page walks and the shape of the plate drawing.</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="label_plate_name">
+          <property name="text">
+           <string>Label</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QLineEdit" name="edit_plate_label">
+          <property name="placeholderText">
+           <string>Plate 1</string>
+          </property>
+          <property name="toolTip">
+           <string>What this plate is called in the study - leave it empty and the next free name is used.</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <widget class="QPushButton" name="btn_add_plate">
+        <property name="text">
+         <string>Add this plate</string>
+        </property>
+        <property name="toolTip">
+         <string>Add a new plate of the chosen format to the study and open it here.</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="wells_group">
+     <property name="title">
+      <string>3.  Wells</string>
+     </property>
+     <layout class="QVBoxLayout" name="wells_layout">
+      <item>
+       <widget class="QLabel" name="page_label">
+        <property name="text">
+         <string>No plate open.</string>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <layout class="QFormLayout" name="page_form">
+        <item row="0" column="0">
+         <widget class="QLabel" name="label_page_size">
+          <property name="text">
+           <string>Wells per page</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QComboBox" name="combo_page">
+          <property name="toolTip">
+           <string>How many wells one page shows. A page never cuts a row in half, so 6 wells of a 96-well plate are one row of it. Fewer wells per page means bigger wells on screen.</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="page_row">
+        <item>
+         <widget class="QPushButton" name="btn_previous_page">
+          <property name="text">
+           <string>&lt; Page</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="btn_next_page">
+          <property name="text">
+           <string>Page &gt;</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="check_images">
+        <property name="text">
+         <string>Draw each well's frame in its well</string>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
+        </property>
+        <property name="toolTip">
+         <string>Show the captured frame inside the well, so the plate becomes a contact sheet as you walk it. Off leaves the plain state colours - faster on a plate of many captures.</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="well_label">
+        <property name="text">
+         <string>No well chosen.</string>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="progress_label">
+        <property name="text">
+         <string>-</string>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="capture_group">
+     <property name="title">
+      <string>4.  Capture</string>
+     </property>
+     <layout class="QVBoxLayout" name="capture_layout">
+      <item>
+       <widget class="QLabel" name="connection_label">
+        <property name="text">
+         <string>Not connected.</string>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="btn_capture">
+        <property name="text">
+         <string>Capture burst on this well</string>
+        </property>
+        <property name="toolTip">
+         <string>Store the frames currently buffered from the camera for the well the page has chosen. The sharpest frame of the burst becomes the well's image.</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="btn_record">
+        <property name="text">
+         <string>Start recording</string>
+        </property>
+        <property name="toolTip">
+         <string>Record the live stream on the chosen well for as long as you like: every frame that arrives is written as it comes, and Stop stores them as one burst of this well (its sharpest frame becomes the well's image). For a well that drifts out of focus, a couple of seconds of recording beats five buffered frames.</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="record_label">
+        <property name="text">
+         <string>Not recording.</string>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="walk_row">
+        <item>
+         <widget class="QPushButton" name="btn_next_well">
+          <property name="text">
+           <string>Next well &gt;</string>
+          </property>
+          <property name="toolTip">
+           <string>Move the selection to the next well that has no image yet - wrapping around at the end of the plate, because the well you missed is the interesting one. Move the plate under the camera before you take the burst.</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="check_advance">
+          <property name="text">
+           <string>Advance after a burst</string>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+          <property name="toolTip">
+           <string>After a burst, move on to the next well without an image by itself - the loop is burst, move the plate, next well.</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <widget class="QPushButton" name="btn_refresh">
+        <property name="text">
+         <string>Re-read the plate</string>
+        </property>
+        <property name="toolTip">
+         <string>Read the wells and their counts again - after another surface captured or measured something.</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="status_label">
+        <property name="text">
+         <string>Ready.</string>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

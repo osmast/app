@@ -1,0 +1,97 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui version="4.0">
+ <class>Dashboard</class>
+ <widget class="QWidget" name="Dashboard">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>330</width>
+    <height>620</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Overview</string>
+  </property>
+  <layout class="QVBoxLayout" name="controls_layout">
+   <item>
+    <widget class="QLabel" name="hint_label">
+     <property name="text">
+      <string>Pick a project on the left to continue it, or start a new one.</string>
+     </property>
+     <property name="wordWrap">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="project_group">
+     <property name="title">
+      <string>Selected project</string>
+     </property>
+     <layout class="QVBoxLayout" name="project_layout">
+      <item>
+       <widget class="QLabel" name="project_label">
+        <property name="text">
+         <string>No project yet.</string>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="stage_label">
+        <property name="text">
+         <string>-</string>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="progress_label">
+        <property name="text">
+         <string>-</string>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="btn_refresh">
+        <property name="text">
+         <string>Refresh</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="next_label">
+     <property name="text">
+      <string>-</string>
+     </property>
+     <property name="wordWrap">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="status_label">
+     <property name="text">
+      <string>-</string>
+     </property>
+     <property name="wordWrap">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources />
+ <connections />
+</ui>

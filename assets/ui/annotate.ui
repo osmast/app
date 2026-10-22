@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Annotate</class>
+ <widget class="QWidget" name="Annotate">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>330</width>
+    <height>460</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Annotate</string>
+  </property>
+  <layout class="QVBoxLayout" name="controls_layout">
+   <item>
+    <widget class="QLabel" name="task_label">
+     <property name="text">
+      <string>-</string>
+     </property>
+     <property name="wordWrap">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="progress_label">
+     <property name="text">
+      <string>-</string>
+     </property>
+     <property name="wordWrap">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="subject_group">
+     <property name="title">
+      <string>Specimen &amp; trait</string>
+     </property>
+     <layout class="QVBoxLayout" name="subject_layout">
+      <item>
+       <layout class="QFormLayout" name="subject_form">
+        <item row="0" column="0">
+         <widget class="QLabel" name="label_specimen">
+          <property name="text">
+           <string>Specimen</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QSpinBox" name="spin_specimen">
+          <property name="minimum">
+           <number>1</number>
+          </property>
+          <property name="maximum">
+           <number>99</number>
+          </property>
+          <property name="value">
+           <number>1</number>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="label_trait">
+          <property name="text">
+           <string>Trait</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QComboBox" name="combo_trait"/>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="length_label">
+     <property name="text">
+      <string>Click the head, then the spine base.</string>
+     </property>
+     <property name="wordWrap">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="measurement_label">
+     <property name="text">
+      <string>Not measured yet.</string>
+     </property>
+     <property name="wordWrap">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="measurements_title">
+     <property name="text">
+      <string>Measurements on this frame</string>
+     </property>
+     <property name="wordWrap">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QListWidget" name="list_measurements">
+     <property name="maximumHeight">
+      <number>120</number>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="zoom_hint_label">
+     <property name="text">
+      <string>Zoom and pan on the image itself: pinch or the Zoom tools in the View cluster, two-finger scroll to pan, F to fit. Full screen hides the panel so the image is all there is.</string>
+     </property>
+     <property name="wordWrap">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="status_label">
+     <property name="text">
+      <string>Nothing selected yet - finish the Select step first.</string>
+     </property>
+     <property name="wordWrap">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

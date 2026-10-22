@@ -1,0 +1,21 @@
+name: z-app
+channels:
+  - conda-forge
+dependencies:
+  - python=3.13
+  - pyside6=6.11
+  # Computer-vision pipeline (Ingest / Localize / Predict).
+  # conda-forge's opencv shares qt6-main with PySide6, so the two coexist.
+  - numpy
+  - opencv
+  # RTMDet training and inference (scripts/train_rtmdet.py, python run.py predict).
+  # Imported lazily by daphnia.vision.rtmdet, so the app still starts without it -
+  # but nothing can be trained until it is here. See docs/rtmdet.md.
+  - pytorch
+  # Optional: lens-distortion calibration from a grid photo (scripts/calibration_probe.py,
+  # and the distortion step docs/calibration.md describes). Apache-2.0 (Diamond Light
+  # Source), imported lazily like pytorch - the app starts and the suite passes without it.
+  - pip
+  - pip:
+      - discorpy
+

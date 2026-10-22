@@ -1,0 +1,468 @@
+/*
+ * DaphniaScope stylesheet template - structure, not colour.
+ *
+ * Every placeholder below - a token name between two percent signs - is replaced by
+ * daphnia/ui/theme.py from the LIGHT or DARK token set before the stylesheet is
+ * applied, so there is exactly one place a colour is written down. A token the
+ * scheme does not define is an error, not a fallback (tests/test_theme.py).
+ *
+ * Three rules keep the windows in step with one another:
+ *
+ *   1. **The palette carries the colour.** Widgets that are not mentioned here -
+ *      QGroupBox bodies, QTableWidget, QListWidget, QTextBrowser, QMessageBox,
+ *      menus, tool tips, disabled and selected states - are coloured by the
+ *      QPalette built from the same tokens. That is the half that used to follow
+ *      the operating system while the other half followed this file.
+ *   2. **No file: URLs.** The previous theme pointed its check marks, combo arrows
+ *      and spin buttons at Adwaita PNGs that only exist on Linux, so macOS showed
+ *      an empty box and no arrow. Those primitives are left to the Fusion style,
+ *      which draws them from the palette on every platform.
+ *   3. **Colour here is a decision.** Buttons that stand for the one thing to do
+ *      next, the step bar's three states, and the translucent tools that float over
+ *      a photograph. Everything else is structure: padding, radius, a hairline.
+ */
+
+/* ------------------------------------------------------------------ surfaces */
+QMainWindow, QDialog {
+    background-color: %window%;
+}
+QWidget#visual_area {
+    background-color: %window%;
+}
+QWidget#controls_panel {
+    background-color: %surface%;
+    border-left: 1px solid %border%;
+}
+QWidget#status_footer {
+    background-color: %surface%;
+    border-top: 1px solid %border%;
+}
+/* The window header (daphnia/ui/widgets/header_bar.py): the menus and the facts that are
+ * not a measurement. It is window chrome - on the window, not on the photograph - so it
+ * uses the scheme's tokens like the status footer, and full screen hides it. The values
+ * elide rather than wrap, so the bar is always one line. */
+QWidget#header_bar {
+    background-color: %surface%;
+    border-bottom: 1px solid %border%;
+}
+QMenuBar#header_menu {
+    background: transparent;
+}
+QLabel#header_title {
+    color: %text_muted%;
+    font-weight: bold;
+}
+QWidget#header_facts {
+    background: transparent;
+}
+QLabel#header_fact_label, QLabel#header_fact_flag {
+    color: %text_muted%;
+    font-size: 9px;
+    font-weight: bold;
+}
+QLabel#header_fact_value {
+    color: %text%;
+    font-size: 12px;
+}
+QLabel#header_fact_flag[tone="warning"] {
+    color: %warning%;
+}
+QLabel#header_fact_flag[tone="danger"] {
+    color: %danger%;
+}
+QScrollArea {
+    background: transparent;
+    border: none;
+}
+QScrollArea > QWidget#qt_scrollarea_viewport {
+    background: transparent;
+}
+QScrollArea#controls_scroll, QScrollArea#body_scroll {
+    background: transparent;
+    border: none;
+}
+QStackedWidget {
+    background: transparent;
+}
+
+/* -------------------------------------------------------------------- text */
+QLabel {
+    background: transparent;
+    color: %text%;
+}
+QLabel#camera_state_label, QLabel#status_scale_label {
+    color: %text_muted%;
+}
+QTextBrowser, QTextEdit, QPlainTextEdit {
+    background-color: %surface_alt%;
+    color: %text%;
+    border: 1px solid %border%;
+    border-radius: 6px;
+    selection-background-color: %accent%;
+    selection-color: %accent_text%;
+}
+QTextBrowser#surface_plan {
+    padding: 10px 14px;
+}
+
+/* ------------------------------------------------------------------ buttons */
+QPushButton, QToolButton, QCommandLinkButton {
+    background-color: %surface_alt%;
+    color: %text%;
+    border: 1px solid %border%;
+    border-radius: 6px;
+    padding: 3px 10px;
+    min-height: 18px;
+}
+QPushButton:hover, QToolButton:hover, QCommandLinkButton:hover {
+    background-color: %hover%;
+    border-color: %border_strong%;
+}
+QPushButton:pressed, QToolButton:pressed, QCommandLinkButton:pressed {
+    background-color: %pressed%;
+}
+QPushButton:checked, QToolButton:checked {
+    background-color: %accent%;
+    color: %accent_text%;
+    border-color: %accent%;
+}
+QPushButton:disabled, QToolButton:disabled {
+    background-color: %surface%;
+    color: %text_disabled%;
+    border-color: %border%;
+}
+/* The action that moves the work forward: `:default` is the Qt pseudo-state for a
+ * dialog's default button, and the pages mark theirs with `setDefault(True)`. */
+QPushButton:default {
+    background-color: %accent%;
+    color: %accent_text%;
+    border-color: %accent%;
+    font-weight: bold;
+}
+QPushButton:default:hover {
+    background-color: %accent_hover%;
+}
+
+/* ------------------------------------------------------------------- inputs */
+QLineEdit, QSpinBox, QDoubleSpinBox, QDateEdit, QTimeEdit, QDateTimeEdit,
+QComboBox, QFontComboBox {
+    background-color: %surface_alt%;
+    color: %text%;
+    border: 1px solid %border%;
+    border-radius: 6px;
+    padding: 2px 6px;
+    min-height: 18px;
+    selection-background-color: %accent%;
+    selection-color: %accent_text%;
+}
+QLineEdit:focus, QSpinBox:focus, QDoubleSpinBox:focus, QDateEdit:focus,
+QTimeEdit:focus, QDateTimeEdit:focus, QComboBox:focus, QFontComboBox:focus {
+    border-color: %accent%;
+}
+QLineEdit:disabled, QSpinBox:disabled, QDoubleSpinBox:disabled, QDateEdit:disabled,
+QTimeEdit:disabled, QDateTimeEdit:disabled, QComboBox:disabled,
+QFontComboBox:disabled {
+    background-color: %surface%;
+    color: %text_disabled%;
+}
+QLineEdit[readOnly="true"] {
+    background-color: %surface%;
+    color: %text_muted%;
+}
+QComboBox QAbstractItemView {
+    background-color: %surface_alt%;
+    color: %text%;
+    border: 1px solid %border%;
+    selection-background-color: %accent%;
+    selection-color: %accent_text%;
+    outline: none;
+}
+
+/* ---------------------------------------------------------- choice controls */
+/* The tick, the radio dot and the focus ring are drawn by the Fusion style from the
+ * palette. Customising the indicator sub-control is exactly what left the previous
+ * theme's check boxes empty (its tick was a Linux-only icon file), so no indicator
+ * is customised anywhere in this file. */
+QLabel#status_label { color: %text_muted%; }
+/* The calibrate screen's **verdict** (`daphnia/ui/pages/calibration.py`): the one line of
+ * panel 2 that is a judgement rather than a measurement - what the number the operator just
+ * made is worth. It is read on the panel, so it uses the scheme's own tokens, and the tone
+ * rides on the widget's own property (set in code, re-polished by the page) rather than on a
+ * colour written at the call site. */
+QLabel#label_verdict {
+    color: %text%;
+    font-weight: bold;
+}
+QLabel#label_verdict[tone="ok"] {
+    color: %verdict_ok%;
+}
+QLabel#label_verdict[tone="warning"] {
+    color: %verdict_warn%;
+}
+QCheckBox, QRadioButton {
+    color: %text%;
+    padding: 2px;
+}
+QCheckBox:disabled, QRadioButton:disabled {
+    color: %text_disabled%;
+}
+QSlider::groove:horizontal {
+    background: %border%;
+    height: 5px;
+    border-radius: 2px;
+}
+QSlider::handle:horizontal {
+    background: %accent%;
+    border: 1px solid %accent%;
+    width: 14px;
+    margin: -6px 0;
+    border-radius: 8px;
+}
+QSlider::handle:horizontal:hover {
+    background: %accent_hover%;
+}
+QProgressBar {
+    background-color: %surface_alt%;
+    color: %text_muted%;
+    border: 1px solid %border%;
+    border-radius: 6px;
+    text-align: center;
+}
+QProgressBar::chunk {
+    background-color: %accent%;
+    border-radius: 5px;
+}
+
+/* ---------------------------------------------------------------- item views */
+QListWidget, QListView, QTreeWidget, QTreeView, QTableWidget, QTableView {
+    background-color: %surface_alt%;
+    alternate-background-color: %surface%;
+    color: %text%;
+    border: 1px solid %border%;
+    border-radius: 6px;
+    gridline-color: %border%;
+    selection-background-color: %accent%;
+    selection-color: %accent_text%;
+    outline: none;
+}
+QListWidget::item:disabled, QTableWidget::item:disabled {
+    color: %text_disabled%;
+}
+QHeaderView::section {
+    background-color: %surface%;
+    color: %text_muted%;
+    border: none;
+    border-right: 1px solid %border%;
+    border-bottom: 1px solid %border%;
+    padding: 4px 6px;
+}
+QTableCornerButton::section {
+    background-color: %surface%;
+    border: none;
+}
+
+/* --------------------------------------------------------------- scroll bars */
+QScrollBar:vertical {
+    background: transparent;
+    width: 10px;
+    margin: 0;
+}
+QScrollBar:horizontal {
+    background: transparent;
+    height: 10px;
+    margin: 0;
+}
+QScrollBar::handle:vertical, QScrollBar::handle:horizontal {
+    background: %border_strong%;
+    border-radius: 4px;
+    min-height: 24px;
+    min-width: 24px;
+}
+QScrollBar::handle:vertical:hover, QScrollBar::handle:horizontal:hover {
+    background: %accent%;
+}
+/* No arrow buttons and no trough: the previous theme drew them from missing icons. */
+QScrollBar::add-line, QScrollBar::sub-line,
+QScrollBar::add-page, QScrollBar::sub-page {
+    background: none;
+    border: none;
+    height: 0;
+    width: 0;
+}
+
+/* ---------------------------------------------------------------- containers */
+QGroupBox {
+    background-color: %surface%;
+    border: 1px solid %border%;
+    border-radius: 8px;
+    margin-top: 12px;
+    padding: 10px 8px 8px 8px;
+}
+QGroupBox::title {
+    subcontrol-origin: margin;
+    subcontrol-position: top left;
+    left: 8px;
+    padding: 0 4px;
+    color: %text_muted%;
+    font-weight: bold;
+}
+QTabWidget::pane {
+    background-color: %surface%;
+    border: 1px solid %border%;
+    border-radius: 6px;
+}
+QTabBar::tab {
+    background-color: %surface_alt%;
+    color: %text_muted%;
+    border: 1px solid %border%;
+    border-bottom: none;
+    padding: 5px 10px;
+}
+QTabBar::tab:selected, QTabBar::tab:hover {
+    background-color: %surface%;
+    color: %text%;
+}
+QMenuBar {
+    background-color: %window%;
+    color: %text%;
+}
+QMenuBar::item:selected {
+    background-color: %accent%;
+    color: %accent_text%;
+}
+QMenu {
+    background-color: %surface_alt%;
+    color: %text%;
+    border: 1px solid %border%;
+}
+QMenu::item:selected {
+    background-color: %accent%;
+    color: %accent_text%;
+}
+QStatusBar {
+    background-color: %surface%;
+    color: %text_muted%;
+}
+QToolTip {
+    background-color: %surface_alt%;
+    color: %text%;
+    border: 1px solid %border_strong%;
+    padding: 4px 6px;
+}
+
+/* ---------------------------------------------------------------------------
+ * DaphniaScope's own widgets, keyed on objectName.
+ * ------------------------------------------------------------------------- */
+
+/* The hub's surface tiles (daphnia/ui/pages/home.py). The tile frame is the
+ * generic QGroupBox above; only the two secondary lines are muted here. */
+QLabel#tile_tagline {
+    color: %text%;
+    font-weight: bold;
+}
+QLabel#tile_meta, QLabel#tile_status {
+    color: %text_muted%;
+}
+QGroupBox QPushButton {
+    font-weight: normal;
+}
+
+/* The image panels: the live stream, the captured frame and the full-size viewer.
+ * They are *not* photographs themselves - the photograph is inside them - so they
+ * follow the theme, and a light desktop no longer opens a black hole. */
+QLabel#stream_view {
+    background-color: %canvas%;
+    color: %canvas_text%;
+    border: none;
+}
+QDialog#image_viewer {
+    background-color: %canvas%;
+}
+QLabel#image_viewer_text {
+    color: %canvas_text%;
+    background: transparent;
+}
+
+/* The plate of the Study 2 surface (daphnia/ui/widgets/well_grid.py). The wells themselves
+ * are **painted** - a circle with a rim is not something QSS can draw - so this is only the
+ * surface they sit on: a card, like the controls panel's own fields, because a plate is
+ * furniture the wells are read against, not a picture of one. */
+QWidget#well_plate {
+    background-color: %surface_alt%;
+    border: 1px solid %border%;
+    border-radius: 8px;
+}
+QLabel#well_legend_label {
+    color: %text_muted%;
+}
+
+/* The guarded step bar (daphnia/ui/shell.py). */
+QWidget#step_bar {
+    background-color: %surface%;
+    border-top: 1px solid %border%;
+}
+QLabel#step_label {
+    color: %text_muted%;
+    padding: 2px 8px;
+    border-radius: 4px;
+}
+QLabel#step_label[state="current"] {
+    background-color: %accent%;
+    color: %accent_text%;
+    font-weight: bold;
+}
+QLabel#step_label[state="done"] {
+    color: %ok%;
+    font-weight: bold;
+}
+QLabel#step_hint {
+    color: %warning%;
+    font-style: italic;
+}
+QWidget#step_bar QPushButton {
+    padding: 2px 10px;
+    font-weight: normal;
+    border-radius: 4px;
+}
+
+/* ---------------------------------------------------------------------------
+ * What a page draws *on the image canvas* (daphnia/ui/widgets/canvas_tools.py).
+ * It sits over a photograph, so it uses the PHOTO_OVERLAY tokens - identical in both
+ * schemes, and identical whether the desktop is light or dark: the image has to stay
+ * readable underneath it.
+ *
+ * Only the **draw tools** are left on the picture (CanvasDrawBar, `X-N20`): the strip of
+ * KPI cards that used to be pinned to the canvas' top-left corner is gone (2026-10-18),
+ * and so is its styling. The facts it carried are read in the window header, which uses
+ * the scheme's own tokens. A page's own actions are **menu items** in that header
+ * (`X-N13`), not buttons: nothing else over the picture needs a style of its own.
+ * ------------------------------------------------------------------------- */
+/* The **draw tools** on the image (CanvasDrawBar, `X-N20`). A plate, because it lies on the
+ * picture, and it holds buttons: a tool is a thing you press, so it gets the cluster's button
+ * tokens - and the checked one is the tool that is armed, which has to be unmistakable at a
+ * glance while the eyes are on the specimen. */
+QWidget#canvas_draw_bar {
+    background-color: %overlay_card_bg%;
+    border: 1px solid %overlay_border%;
+    border-radius: 6px;
+}
+QWidget#canvas_draw_bar QToolButton {
+    background-color: %overlay_button%;
+    border: 1px solid %overlay_button_border%;
+    border-radius: 4px;
+    color: %overlay_text%;
+    padding: 3px 9px;
+    font-size: 10px;
+    font-weight: bold;
+}
+QWidget#canvas_draw_bar QToolButton:hover {
+    background-color: %overlay_button_hover%;
+    color: %overlay_text_strong%;
+}
+QWidget#canvas_draw_bar QToolButton:checked {
+    background-color: %overlay_checked%;
+    border: 1px solid %overlay_checked_border%;
+    color: %overlay_text_strong%;
+}
+
+

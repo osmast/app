@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>SetupPlates</class>
+ <widget class="QWidget" name="SetupPlates">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>560</width>
+    <height>300</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Plate Layout</string>
+  </property>
+  <layout class="QVBoxLayout" name="controls_layout">
+   <item>
+    <widget class="QLabel" name="placeholder_label">
+     <property name="text">
+      <string>Placeholder. Will provide the multi-format canvas (6 / 24 / 96-well) and drag-and-drop treatment assignment (medium, toxicant, concentration).</string>
+     </property>
+     <property name="wordWrap">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

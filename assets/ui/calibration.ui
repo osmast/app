@@ -1,0 +1,552 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui version="4.0">
+ <class>Calibration</class>
+ <widget class="QWidget" name="Calibration">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>500</width>
+    <height>900</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Calibration</string>
+  </property>
+  <layout class="QVBoxLayout" name="controls_layout">
+   <item>
+    <widget class="QLabel" name="intro_label">
+     <property name="text">
+      <string>One photo of the grid paper, one press, one result - stored against the preset name. Every measurement then carries the scale it was taken under.</string>
+     </property>
+     <property name="wordWrap">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="preset_group">
+     <property name="title">
+      <string>1.  Optical chain</string>
+     </property>
+     <layout class="QVBoxLayout" name="preset_layout">
+      <item>
+       <layout class="QHBoxLayout" name="preset_actions">
+        <item>
+         <widget class="QPushButton" name="btn_load_preset">
+          <property name="text">
+           <string>Load preset...</string>
+          </property>
+          <property name="toolTip">
+           <string>Switch the device in force: pick a stored preset by its name, and that chain's newest scale becomes the one every surface measures with. Nothing is measured or stored - this only chooses.</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="btn_new_preset">
+          <property name="text">
+           <string>New preset...</string>
+          </property>
+          <property name="toolTip">
+           <string>Start a fresh preset: a popup asks for the device's name, and the measurement is cleared so the next scale you store belongs to a new optical chain. The scale in force is untouched until you store one.</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QFormLayout" name="facts_form">
+        <item row="0" column="0">
+         <widget class="QLabel" name="label_preset">
+          <property name="text">
+           <string>Preset</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QLineEdit" name="profile_name">
+          <property name="readOnly">
+           <bool>true</bool>
+          </property>
+          <property name="frame">
+           <bool>false</bool>
+          </property>
+          <property name="toolTip">
+           <string>The device this panel names - set by 'New preset...' and 'Load preset...', and shown here read-only.</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="label_setup_key">
+          <property name="text">
+           <string>Setup key</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QLabel" name="setup_key_label">
+          <property name="text">
+           <string>-</string>
+          </property>
+          <property name="wordWrap">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0">
+         <widget class="QLabel" name="label_in_force">
+          <property name="text">
+           <string>In force</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1">
+         <widget class="QLabel" name="in_force_label">
+          <property name="text">
+           <string>none yet</string>
+          </property>
+          <property name="wordWrap">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="0">
+         <widget class="QLabel" name="label_calibrations">
+          <property name="text">
+           <string>Calibrations</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="1">
+         <widget class="QLabel" name="history_label">
+          <property name="text">
+           <string>none stored</string>
+          </property>
+          <property name="wordWrap">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="0">
+         <widget class="QLabel" name="label_mount">
+          <property name="text">
+           <string>Mount</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="1">
+         <widget class="QLabel" name="locked_label">
+          <property name="text">
+           <string>zoom 1.0x, focus locked at infinity</string>
+          </property>
+          <property name="wordWrap">
+           <bool>true</bool>
+          </property>
+          <property name="toolTip">
+           <string>The mount locks zoom and focus, so they are constants of every calibration rather than fields to fill in - the preset name is the whole description of this chain.</string>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="0">
+         <widget class="QLabel" name="label_distortion_caption">
+          <property name="text">
+           <string>Distortion</string>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="1">
+         <widget class="QLabel" name="label_distortion">
+          <property name="text">
+           <string>unmeasured and not corrected - one scale covers the whole frame. Optional: it only matters off-centre.</string>
+          </property>
+          <property name="wordWrap">
+           <bool>true</bool>
+          </property>
+          <property name="toolTip">
+           <string>Both routes - the detected grid and a hand-clicked span - only set that one scale; neither of them corrects the lens, and nothing in this app rewrites a frame. A correction is a model fitted for this chain and stored with it, and this chain has none, so the panel says "not corrected" rather than "0 %". You can ignore this while the specimen sits near the centre of the field; the drift line in panel 2 says how much the scale moves towards the edge.</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="calibration_actions">
+        <item>
+         <widget class="QPushButton" name="btn_load_calibration">
+          <property name="text">
+           <string>Load calibration...</string>
+          </property>
+          <property name="toolTip">
+           <string>Load one of this device's stored calibrations: pick it by date and scale, and it becomes the calibration in force - with its proof photo shown on the canvas. Nothing is measured or stored, and the preset name does not change.</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="btn_new_calibration">
+          <property name="text">
+           <string>New calibration...</string>
+          </property>
+          <property name="toolTip">
+           <string>Start a fresh calibration of this device: clear the measurement so you can measure the grid again and store a new scale. The calibration in force is untouched until you store one.</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="reference_group">
+     <property name="title">
+      <string>2.  Target photo</string>
+     </property>
+     <layout class="QVBoxLayout" name="reference_layout">
+      <item>
+       <layout class="QHBoxLayout" name="photo_source_row">
+        <item>
+         <widget class="QPushButton" name="btn_use_frame">
+          <property name="text">
+           <string>Use live frame</string>
+          </property>
+          <property name="toolTip">
+           <string>Freeze the live frame as the target photo. The camera's state is on the line below.</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="btn_open_photo">
+          <property name="text">
+           <string>Open photo...</string>
+          </property>
+          <property name="toolTip">
+           <string>Measure from any photo file - including an iPhone .HEIC.</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <widget class="QLabel" name="stream_hint_label">
+        <property name="text">
+         <string>Live feed: -</string>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <layout class="QFormLayout" name="grid_size_form">
+        <item row="0" column="0">
+         <widget class="QLabel" name="label_grid_mm">
+          <property name="text">
+           <string>Printed square</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QDoubleSpinBox" name="spin_grid_mm">
+          <property name="decimals">
+           <number>3</number>
+          </property>
+          <property name="minimum">
+           <double>0.001000000000000</double>
+          </property>
+          <property name="maximum">
+           <double>100.000000000000000</double>
+          </property>
+          <property name="singleStep">
+           <double>0.500000000000000</double>
+          </property>
+          <property name="value">
+           <double>1.000000000000000</double>
+          </property>
+          <property name="suffix">
+           <string> mm</string>
+          </property>
+          <property name="toolTip">
+           <string>Printed spacing of one square of the reference grid: 1 mm for standard grid paper, 0.5 mm or 0.1 mm for finer paper. The detector measures how many pixels one square spans, so the square's true size is what turns that into a scale.</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <widget class="QPushButton" name="btn_measure_grid">
+        <property name="text">
+         <string>Measure grid</string>
+        </property>
+        <property name="toolTip">
+         <string>Find the printed lattice in this photo and measure its period. The lattice and the paper's circle are drawn on the photo, so the measurement can be seen rather than trusted.</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="grid_label">
+        <property name="text">
+         <string>No lattice measured yet.</string>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_result">
+        <property name="text">
+         <string>Period: -</string>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_drift">
+        <property name="text">
+         <string>Drift: -</string>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_field_stop">
+        <property name="text">
+         <string>Field stop: -</string>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_verdict">
+        <property name="text">
+         <string>Verdict: -</string>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QFrame" name="manual_separator">
+        <property name="frameShape">
+         <enum>QFrame::HLine</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Sunken</enum>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="manual_hint_label">
+        <property name="text">
+         <string>Or by hand - the fallback: click the first and the last line of N squares. Coarser than the grid, but it works when the paper is not fully in view.</string>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <layout class="QFormLayout" name="manual_form">
+        <item row="0" column="0">
+         <widget class="QLabel" name="label_squares">
+          <property name="text">
+           <string>Squares</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QSpinBox" name="spin_squares">
+          <property name="minimum">
+           <number>1</number>
+          </property>
+          <property name="maximum">
+           <number>100</number>
+          </property>
+          <property name="value">
+           <number>10</number>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <widget class="QLabel" name="points_label">
+        <property name="text">
+         <string>Click the first and the last line of the span.</string>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="zoom_hint_label">
+        <property name="text">
+         <string>Zoom on the image itself: pinch, or the View menu. F fits.</string>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="scale_group">
+     <property name="title">
+      <string>3.  Scale in force</string>
+     </property>
+     <layout class="QVBoxLayout" name="scale_layout">
+      <item>
+       <widget class="QLabel" name="px_per_um_label">
+        <property name="text">
+         <string>S = - px/mm</string>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="uncertainty_label">
+        <property name="text">
+         <string>Scale uncertainty: -</string>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="example_label">
+        <property name="text">
+         <string>What a measured length would read as: -</string>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="btn_store_scale">
+        <property name="text">
+         <string>Store this scale</string>
+        </property>
+        <property name="toolTip">
+         <string>Store the scale - with its uncertainty - as the calibration in force for the preset in panel 1. Measurements already taken keep the scale they were taken under.</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="check_manual_scale">
+        <property name="text">
+         <string>I know the scale already</string>
+        </property>
+        <property name="toolTip">
+         <string>Use this when you already know the scale - from a stage micrometer, or from the optics' own specification. A hand-entered scale is stored as a claim, not as a measurement.</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <layout class="QFormLayout" name="manual_scale_form">
+        <item row="0" column="0">
+         <widget class="QLabel" name="label_manual_scale">
+          <property name="text">
+           <string>Scale</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QDoubleSpinBox" name="spin_manual_px_per_um">
+          <property name="decimals">
+           <number>6</number>
+          </property>
+          <property name="minimum">
+           <double>0.000000000000000</double>
+          </property>
+          <property name="maximum">
+           <double>1000.000000000000000</double>
+          </property>
+          <property name="singleStep">
+           <double>0.010000000000000</double>
+          </property>
+          <property name="suffix">
+           <string> px/um</string>
+          </property>
+          <property name="toolTip">
+           <string>Type the scale you know, in pixels per micrometre - 0.147300 px/um is 147.3 px/mm. It overrides the measurement, and it is stored as hand-entered.</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="label_manual_accuracy">
+          <property name="text">
+           <string>Stated accuracy</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QDoubleSpinBox" name="spin_manual_accuracy">
+          <property name="decimals">
+           <number>2</number>
+          </property>
+          <property name="minimum">
+           <double>0.010000000000000</double>
+          </property>
+          <property name="maximum">
+           <double>100.000000000000000</double>
+          </property>
+          <property name="singleStep">
+           <double>0.100000000000000</double>
+          </property>
+          <property name="value">
+           <double>2.000000000000000</double>
+          </property>
+          <property name="suffix">
+           <string> %</string>
+          </property>
+          <property name="toolTip">
+           <string>How accurate the hand-entered scale is, in percent. It is your claim, not a measurement.</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <widget class="QLabel" name="reminder_label">
+        <property name="text">
+         <string>An accuracy has to come from somewhere: the print carries about half a percent, and a hand-entered scale carries only what you state. Verify the sheet once against a stage micrometer.</string>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="status_label">
+        <property name="text">
+         <string>Ready.</string>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+
+
+  </layout>
+ </widget>
+ <resources />
+ <connections />
+</ui>

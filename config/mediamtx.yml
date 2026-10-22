@@ -1,0 +1,68 @@
+# MediaMTX configuration for DaphniaScope (lab / local network).
+#
+#   phone --SRT publish--> MediaMTX --RTSP read--> OpenCV pipeline (daphnia.streaming)
+#
+# The phone publishes SRT (e.g. the Moblin iOS app) and OpenCV reads the same path
+# over RTSP. SRT retransmits, so a lossy link cannot deliver a truncated H.264
+# frame. Only these two protocols are enabled.
+#
+# Install system-wide:  ./scripts/setup_mediamtx.sh
+# Run from the repo:    mediamtx config/mediamtx.yml
+# Or as a service:      brew services start mediamtx
+#
+# Keep the ports in sync with daphnia/settings.py.
+
+logLevel: info
+logDestinations: [stdout]
+
+# Size of the read buffer of every UDP socket (including the SRT one). A larger
+# buffer absorbs bursts and cuts packet loss on a busy Wi-Fi link. macOS caps a
+# socket at kern.ipc.maxsockbuf (8 MB on this Mac), so stay below it.
+udpReadBufferSize: 4194304
+
+# --- Control API (localhost only) ---------------------------------------
+api: yes
+apiAddress: 127.0.0.1:9997
+
+# --- Protocols ----------------------------------------------------------
+# Only SRT (phone ingest) and RTSP (pipeline read) are needed.
+srt: yes
+srtAddress: :8890           # the phone publishes here (SRT; retransmits on loss)
+rtsp: yes
+rtspAddress: :8554          # OpenCV reads from here
+rtspTransports: [tcp]       # TCP only, so no RTP/RTCP UDP listeners are opened
+
+# Everything else off.
+rtmp: no
+hls: no
+webrtc: no
+moq: no
+
+# --- Authentication -----------------------------------------------------
+# Open to the local network so a phone can publish without credentials.
+# The control API stays restricted to localhost.
+# Tighten this before exposing the server beyond the lab network.
+authMethod: internal
+authInternalUsers:
+  - user: any
+    pass:
+    ips: []
+    permissions:
+      - action: publish
+        path:
+      - action: read
+        path:
+      - action: playback
+        path:
+  - user: any
+    pass:
+    ips: ["127.0.0.1", "::1"]
+    permissions:
+      - action: api
+      - action: metrics
+
+# --- Paths --------------------------------------------------------------
+# The phone publishes to /live/cam (see settings.STREAM_PATH).
+paths:
+  live/cam:
+  all_others:

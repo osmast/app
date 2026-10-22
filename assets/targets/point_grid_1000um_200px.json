@@ -1,0 +1,14 @@
+{
+  "name": "point_grid_1000um_200px.png",
+  "kind": "rendered",
+  "pitch_um": 1000.0,
+  "px_per_um": 0.2,
+  "spacing_px": 200,
+  "dots_x": 15,
+  "dots_y": 15,
+  "dot_radius_px": 10,
+  "width": 3401,
+  "height": 3401,
+  "created": "2026-10-21T20:35:55+00:00",
+  "note": "rendered by backend/targets.py - the ground truth of the tests"
+}

@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Bench</class>
+ <widget class="QWidget" name="Bench">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>384</width>
+    <height>1035</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Bench</string>
+  </property>
+  <layout class="QVBoxLayout" name="controls_layout">
+   <item>
+    <widget class="QGroupBox" name="corpus_group">
+     <property name="title">
+      <string>0.  Dataset - where this work is stored</string>
+     </property>
+     <layout class="QGridLayout" name="corpus_layout">
+      <item row="0" column="0" colspan="2">
+       <widget class="QLabel" name="dataset_hint_label">
+        <property name="text">
+         <string>Every measurement is stored in a dataset, whichever entry point made it - the same place the Dataset labeller and a study use.</string>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0" colspan="2">
+       <widget class="QComboBox" name="combo_dataset"/>
+      </item>
+      <item row="2" column="0">
+       <widget class="QPushButton" name="btn_new_dataset">
+        <property name="toolTip">
+         <string>Create a corpus for another model: two keypoints, four keypoints, or bounding boxes.</string>
+        </property>
+        <property name="text">
+         <string>New dataset...</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QPushButton" name="btn_rename_dataset">
+        <property name="toolTip">
+         <string>Rename the open dataset. Its model cannot change: the schema is what its labels mean, so a different model is a different dataset.</string>
+        </property>
+        <property name="text">
+         <string>Rename...</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="0" colspan="2">
+       <widget class="QLabel" name="dataset_label">
+        <property name="text">
+         <string>Dataset: -</string>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="image_group">
+     <property name="title">
+      <string>1.  Image</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout">
+      <item row="0" column="0" colspan="2">
+       <widget class="QLabel" name="intro_label">
+        <property name="text">
+         <string>Measure right now: open an image, click the two ends of a line, read the length. No study, no plate and no phone required.</string>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="source_label">
+        <property name="text">
+         <string>No image yet.</string>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QLabel" name="scale_label">
+        <property name="text">
+         <string>Scale: -</string>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="0" colspan="2">
+       <widget class="QLabel" name="stream_hint_label">
+        <property name="text">
+         <string>Live feed: not connected.</string>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="measure_group">
+     <property name="title">
+      <string>2.  Measure</string>
+     </property>
+     <layout class="QVBoxLayout" name="measure_layout">
+      <item>
+       <widget class="QLabel" name="prompt_label">
+        <property name="text">
+         <string>Click the A, then the B.</string>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="keypoint_row">
+        <item>
+         <widget class="QLabel" name="keypoint_label">
+          <property name="text">
+           <string>Line</string>
+          </property>
+          <property name="wordWrap">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <widget class="QLabel" name="length_label">
+        <property name="text">
+         <string>-</string>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="results_group">
+     <property name="title">
+      <string>3.  This view - what will be saved</string>
+     </property>
+     <layout class="QVBoxLayout" name="results_layout">
+      <item>
+       <widget class="QLabel" name="count_label">
+        <property name="text">
+         <string>No measurements in this view yet.</string>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QTreeWidget" name="list_results">
+        <property name="rootIsDecorated">
+         <bool>true</bool>
+        </property>
+        <column>
+         <property name="text">
+          <string>Individual</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Measurement</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Name</string>
+         </property>
+        </column>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="name_hint_label">
+        <property name="text">
+         <string>Double-click a row's Name to call that measurement what you call it - the name is written above its line and saved with the row.</string>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="unsaved_label">
+        <property name="text">
+         <string>Not saved yet: this view belongs to this image - step to another frame and it waits here; leave the Bench without saving and it is gone. Press Save to store it in the dataset.</string>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="btn_save">
+        <property name="text">
+         <string>Save this view to the dataset</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <layout class="QFormLayout" name="attach_form">
+        <item row="0" column="0">
+         <widget class="QLabel" name="label_study">
+          <property name="text">
+           <string>Or a study</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QComboBox" name="combo_study"/>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <widget class="QPushButton" name="btn_save_study">
+        <property name="text">
+         <string>Save this view to the study</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="status_label">
+        <property name="text">
+         <string>Ready.</string>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Select</class>
+ <widget class="QWidget" name="Select">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>330</width>
+    <height>520</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Select</string>
+  </property>
+  <layout class="QVBoxLayout" name="controls_layout">
+   <item>
+    <widget class="QLabel" name="hint_label">
+     <property name="text">
+      <string>One frame per well / individual is kept - the rest go to the tray, so every well yields exactly one measurement.</string>
+     </property>
+     <property name="wordWrap">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="target_group">
+     <property name="title">
+      <string>Target</string>
+     </property>
+     <layout class="QVBoxLayout" name="target_layout">
+      <item>
+       <widget class="QComboBox" name="combo_target"/>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="nav_row">
+        <item>
+         <widget class="QPushButton" name="btn_prev_target">
+          <property name="text">
+           <string>&lt; Previous</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="btn_next_target">
+          <property name="text">
+           <string>Next &gt;</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <widget class="QLabel" name="position_label">
+        <property name="text">
+         <string>-</string>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="btn_refresh">
+        <property name="text">
+         <string>Refresh targets</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="best_group">
+     <property name="title">
+      <string>Best frame</string>
+     </property>
+     <layout class="QVBoxLayout" name="best_layout">
+      <item>
+       <widget class="QLabel" name="summary_label">
+        <property name="text">
+         <string>-</string>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="btn_pick_sharpest">
+        <property name="text">
+         <string>Pick sharpest frame</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="btn_discard_all">
+        <property name="text">
+         <string>Clear selection</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="status_label">
+     <property name="text">
+      <string>Tick the frame that shows the specimen best.</string>
+     </property>
+     <property name="wordWrap">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

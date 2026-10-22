@@ -1,0 +1,414 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>SetupExperiment</class>
+ <widget class="QWidget" name="SetupExperiment">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>330</width>
+    <height>820</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Setup</string>
+  </property>
+  <layout class="QVBoxLayout" name="controls_layout">
+   <item>
+    <widget class="QLabel" name="hint_label">
+     <property name="text">
+      <string>Set up the study, then connect the phone here - the connection is used by every later step.</string>
+     </property>
+     <property name="wordWrap">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="study_group">
+     <property name="title">
+      <string>1. Study and mode</string>
+     </property>
+     <layout class="QVBoxLayout" name="study_layout">
+      <item>
+       <layout class="QFormLayout" name="new_form">
+        <item row="0" column="0">
+         <widget class="QLabel" name="label_name">
+          <property name="text">
+           <string>Name</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QLineEdit" name="study_name">
+          <property name="placeholderText">
+           <string>Microalgae diet trial 2026</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="label_organism">
+          <property name="text">
+           <string>Organism</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QLineEdit" name="organism">
+          <property name="text">
+           <string>Daphnia magna</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0">
+         <widget class="QLabel" name="label_kind">
+          <property name="text">
+           <string>Measures</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1">
+         <widget class="QComboBox" name="combo_kind">
+          <item>
+           <property name="text">
+            <string>Animal</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Plant</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+        <item row="3" column="0">
+         <widget class="QLabel" name="label_mode">
+          <property name="text">
+           <string>Targets</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="1">
+         <widget class="QComboBox" name="combo_target_mode">
+          <item>
+           <property name="text">
+            <string>Single specimens (counter)</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Multi-well plates</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+        <item row="4" column="0">
+         <widget class="QLabel" name="label_timecourse">
+          <property name="text">
+           <string>Timecourse</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="1">
+         <widget class="QComboBox" name="combo_timecourse">
+          <item>
+           <property name="text">
+            <string>Repeated over time</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Measured once</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+        <item row="5" column="0">
+         <widget class="QLabel" name="label_interval">
+          <property name="text">
+           <string>Interval (h)</string>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="1">
+         <widget class="QDoubleSpinBox" name="interval_hours">
+          <property name="decimals">
+           <number>2</number>
+          </property>
+          <property name="minimum">
+           <double>0.250000000000000</double>
+          </property>
+          <property name="maximum">
+           <double>720.000000000000000</double>
+          </property>
+          <property name="value">
+           <double>24.000000000000000</double>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <widget class="QLabel" name="destination_label">
+        <property name="text">
+         <string>Images: recordings/&lt;study id&gt;  (one folder per study)</string>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="btn_choose_destination">
+        <property name="text">
+         <string>Choose a different folder ...</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="btn_create_study">
+        <property name="text">
+         <string>Create study</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="study_label">
+        <property name="text">
+         <string>No study yet.</string>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="plates_group">
+     <property name="title">
+      <string>2. Plates</string>
+     </property>
+     <layout class="QVBoxLayout" name="plates_layout">
+      <item>
+       <layout class="QHBoxLayout" name="plates_row">
+        <item>
+         <widget class="QLabel" name="label_format">
+          <property name="text">
+           <string>Format</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QComboBox" name="combo_format">
+          <item>
+           <property name="text">
+            <string>6</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>24</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>96</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="btn_add_plate">
+          <property name="text">
+           <string>Add plate</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <widget class="QLabel" name="plates_label">
+        <property name="text">
+         <string>No plates yet - the individual counter works without one.</string>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="protocol_group">
+     <property name="title">
+      <string>3. Acquisition &amp; templates</string>
+     </property>
+     <layout class="QVBoxLayout" name="protocol_layout">
+      <item>
+       <layout class="QFormLayout" name="protocol_form">
+        <item row="0" column="0">
+         <widget class="QLabel" name="label_protocol">
+          <property name="text">
+           <string>Protocol</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QComboBox" name="combo_protocol"/>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="label_template">
+          <property name="text">
+           <string>Template</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QComboBox" name="combo_template"/>
+        </item>
+        <item row="2" column="0">
+         <widget class="QLabel" name="label_template_name">
+          <property name="text">
+           <string>Save as</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1">
+         <widget class="QLineEdit" name="template_name">
+          <property name="placeholderText">
+           <string>Template name</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <widget class="QLabel" name="protocol_hint_label">
+        <property name="text">
+         <string>-</string>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="template_buttons">
+        <item>
+         <widget class="QPushButton" name="btn_load_template">
+          <property name="text">
+           <string>Load template</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="btn_save_template">
+          <property name="text">
+           <string>Save as template</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="phone_group">
+     <property name="title">
+      <string>4. Phone connection</string>
+     </property>
+     <layout class="QVBoxLayout" name="phone_layout">
+      <item>
+       <layout class="QFormLayout" name="phone_form">
+        <item row="0" column="0">
+         <widget class="QLabel" name="label_host">
+          <property name="text">
+           <string>Host</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QLineEdit" name="edit_host"/>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="label_url">
+          <property name="text">
+           <string>Read URL</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QLineEdit" name="edit_url"/>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_publish">
+        <property name="text">
+         <string>Type this into the phone app (SRT, e.g. Moblin):</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="publish_label">
+        <property name="text">
+         <string>srt://...</string>
+        </property>
+        <property name="textInteractionFlags">
+         <set>Qt::TextSelectableByMouse</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="phone_buttons">
+        <item>
+         <widget class="QPushButton" name="btn_connect">
+          <property name="text">
+           <string>Connect phone</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="btn_disconnect">
+          <property name="text">
+           <string>Disconnect</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <widget class="QLabel" name="connection_label">
+        <property name="text">
+         <string>Not connected.</string>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="status_label">
+     <property name="text">
+      <string>Create a study and connect the phone to unlock calibration.</string>
+     </property>
+     <property name="wordWrap">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
